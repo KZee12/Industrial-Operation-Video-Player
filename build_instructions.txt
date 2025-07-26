@@ -1,0 +1,13 @@
+Server Side :-
+
+1] For client_app.py:
+pyinstaller --noconsole --onefile --name client_app client_app.py
+
+2] For Hash File:
+certutil -hashfile client_app.exe SHA256
+
+
+Client Side :-
+
+For start_client.py:
+pyinstaller --noconsole --onefile --name start_client start_client.py
