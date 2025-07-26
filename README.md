@@ -4,6 +4,43 @@ This guide explains how to set up the **server and client** system for centraliz
 
 ---
 
+## 🔁 System Overview
+
+### 📦 Software Update Flow (Client App)
+
+Server → client_app.exe + version.txt
+↓
+Client → Check version via HTTP
+↓
+If mismatch → Download and run updated client_app.exe
+↓
+Client polls PLC + fetches video mapping from server
+
+
+### 🎬 Command Flow (Video Playback Logic)
+
+IIndustrial Event → PLC Memory Update (2 bytes)
+↓
+Client polls PLC every 500ms
+↓
+Client queries server → gets video URL
+↓
+Client launches VLC with HTTP stream
+↓
+Server streams video via HTTP
+↓
+Client logs playback activity
+
+
+### 📡 Network Flow
+
+[PLC Network] ←→ [Client PCs] ←→ [Corporate Network] ←→ [Video Server]
+   S7Comm       Industrial LAN       HTTP/HTTPS          Content Host
+  Port 102     Real-time Control     Port 8000     Video Streaming
+
+
+---
+
 ## 📁 Folder Structure (On Server)
 
 ```
